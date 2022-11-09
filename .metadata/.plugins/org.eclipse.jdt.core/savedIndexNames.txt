@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+/Users/apple/Documents/Java/Projects/fullstack-blogging-application/02-backend/.metadata/.plugins/org.eclipse.jdt.core
+1865797976.index

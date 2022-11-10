@@ -14,7 +14,7 @@ import com.daadestroyer.springbootfullstackreactbloggingapp.model.User;
 import com.daadestroyer.springbootfullstackreactbloggingapp.repo.UserRepo;
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.UserService;
 
-import net.bytebuddy.asm.Advice.This;
+ 
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 		User savedUser = this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("User","id",userId));
 		this.userRepo.delete(savedUser);
 		
-		return savedUser+" deleted...";
+		return savedUser+" deleted sucessfully...";
 	}
 
 }

@@ -1,0 +1,5 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.dto;
+
+public class UserDto {
+
+}

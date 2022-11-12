@@ -19,7 +19,7 @@ public class CategoryDto {
 	private int catId;
 
 	@NotEmpty(message = "please enter category name")
-	@Size(min = 5, max = 30, message = "category title can't be less than length of 2 or more than 30")
+	@Size(min = 2, max = 30, message = "category title can't be less than length of 2 or more than 30")
 	private String catTitle;
 
 	@NotEmpty(message = "please enter category description")

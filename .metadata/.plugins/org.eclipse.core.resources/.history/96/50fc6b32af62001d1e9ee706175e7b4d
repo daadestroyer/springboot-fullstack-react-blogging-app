@@ -18,11 +18,11 @@ public class CategoryDto {
 
 	private int catId;
 
-	@NotEmpty(message = "please enter category name")
-	@Size(min = 5, max = 30, message = "category title can't be less than length of 2 or more than 30")
+	@NotEmpty(message = "please enter name")
+	@Size(min = 2, max = 30, message = "category title can't be less than length of 2 or more than 30")
 	private String catTitle;
 
-	@NotEmpty(message = "please enter category description")
+	@NotEmpty(message = "please enter username")
 	@Size(min = 10, max = 100, message = "category description can't be less than length of 10 or more than 100")
 	private String catDesc;
 }

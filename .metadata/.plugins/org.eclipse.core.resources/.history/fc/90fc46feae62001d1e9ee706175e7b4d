@@ -2,8 +2,6 @@ package com.daadestroyer.springbootfullstackreactbloggingapp.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +27,7 @@ public class CategoryController {
 	// create
 	// http://localhost:8080/user/save-category/
 	@PostMapping("/save-category")
-	public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
+	public ResponseEntity<?> createCategory(@RequestBody CategoryDto categoryDto) {
 		CategoryDto savedCategoryDto = this.categoryServiceImpl.createCategory(categoryDto);
 		return new ResponseEntity<>(savedCategoryDto, HttpStatus.OK);
 
@@ -37,7 +35,7 @@ public class CategoryController {
 
 	// update
 	@PutMapping("/update-category/{catId}")
-	public ResponseEntity<?> updateCategory(@Valid @RequestBody CategoryDto categoryDto, @PathVariable int catId) {
+	public ResponseEntity<?> updateCategory(@RequestBody CategoryDto categoryDto, @PathVariable int catId) {
 		CategoryDto updatedCategory = this.categoryServiceImpl.updateCategory(categoryDto, catId);
 		return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
 

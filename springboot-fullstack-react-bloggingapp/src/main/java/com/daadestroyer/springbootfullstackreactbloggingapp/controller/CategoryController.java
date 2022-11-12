@@ -25,6 +25,7 @@ public class CategoryController {
 	private CategoryServiceImpl categoryServiceImpl;
 
 	// create
+	// http://localhost:8080/user/save-category/
 	@PostMapping("/save-category")
 	public ResponseEntity<?> createCategory(@RequestBody CategoryDto categoryDto) {
 		CategoryDto savedCategoryDto = this.categoryServiceImpl.createCategory(categoryDto);
@@ -34,13 +35,14 @@ public class CategoryController {
 
 	// update
 	@PutMapping("/update-category/{catId}")
-	public ResponseEntity<?> updateCategory(@RequestBody CategoryDto categoryDto, @PathVariable int catid) {
-		CategoryDto updatedCategory = this.categoryServiceImpl.updateCategory(categoryDto, catid);
+	public ResponseEntity<?> updateCategory(@RequestBody CategoryDto categoryDto, @PathVariable int catId) {
+		CategoryDto updatedCategory = this.categoryServiceImpl.updateCategory(categoryDto, catId);
 		return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
 
 	}
 
 	// get category
+	// http://localhost:8080/category/get-single-category/1
 	@GetMapping("/get-single-category/{catId}")
 	public ResponseEntity<?> getSingleCategory(@PathVariable int catId) {
 		CategoryDto singleCategory = this.categoryServiceImpl.getSingleCategory(catId);
@@ -48,6 +50,7 @@ public class CategoryController {
 	}
 
 	// get all category
+	// http://localhost:8080/category/get-all-category
 	@GetMapping("/get-all-category")
 	public ResponseEntity<?> getAllCategory() {
 		List<CategoryDto> allCategory = this.categoryServiceImpl.getAllCategory();
@@ -56,6 +59,7 @@ public class CategoryController {
 
 	// delete category
 	@DeleteMapping("/delete-category/{catId}")
+	// http://localhost:8080/category/delete-category/1
 	public ResponseEntity<?> deleteCategory(@PathVariable int catId) {
 		String message = this.categoryServiceImpl.deleteCategoryById(catId);
 		return new ResponseEntity<>(message, HttpStatus.OK);

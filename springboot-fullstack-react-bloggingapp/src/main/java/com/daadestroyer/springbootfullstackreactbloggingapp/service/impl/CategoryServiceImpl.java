@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.CategoryDto;
 import com.daadestroyer.springbootfullstackreactbloggingapp.exception.ResourceNotFoundException;
@@ -12,8 +13,9 @@ import com.daadestroyer.springbootfullstackreactbloggingapp.model.Category;
 import com.daadestroyer.springbootfullstackreactbloggingapp.repo.CategoryRepo;
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.CategoryService;
 
-import net.bytebuddy.asm.Advice.This;
 
+
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired

@@ -1,0 +1,9 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.dto;
+
+public class CategoryDto {
+
+	
+	private int catId;
+	private String catTitle;
+	private String catDesc;
+}

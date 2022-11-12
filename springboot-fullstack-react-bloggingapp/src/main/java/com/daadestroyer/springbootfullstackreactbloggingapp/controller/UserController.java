@@ -28,6 +28,7 @@ public class UserController {
 	private UserServiceImpl userServiceImpl;
 
 	// POST - save user
+	// http://localhost:8080/user/save-user
 	@PostMapping("/save-user")
 	public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) {
 		UserDto newUser = this.userServiceImpl.addUser(userDto);
@@ -35,6 +36,7 @@ public class UserController {
 	}
 
 	// PUT - update user
+	// http://localhost:8080/user/update-user/3
 	@PutMapping("/update-user/{userId}")
 	public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, @PathVariable int userId) {
 		UserDto updateUser = this.userServiceImpl.updateUser(userDto, userId);
@@ -43,15 +45,25 @@ public class UserController {
 
 	// DELETE - delete user
 	@DeleteMapping("/delete-user/{userId}")
+	// http://localhost:8080/user/delete-user/2
 	public ResponseEntity<?> deleteUser(@PathVariable int userId) {
 		String message = this.userServiceImpl.deleteUserById(userId);
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 	// GET - get user
+	// http://localhost:8080/user/get-all-user
 	@GetMapping("/get-all-user")
-	public ResponseEntity<?> getAllUser(){
+	public ResponseEntity<?> getAllUser() {
 		List<UserDto> allUsers = this.userServiceImpl.getAllUsers();
-		return new ResponseEntity<>(allUsers,HttpStatus.OK);
+		return new ResponseEntity<>(allUsers, HttpStatus.OK);
+	}
+
+	// GET - single user
+	// http://localhost:8080/user/get-single-user/2
+	@GetMapping("/get-single-user/{userId}")
+	public ResponseEntity<?> getSingleUser(@PathVariable int userId) {
+		UserDto userById = this.userServiceImpl.getUserById(userId);
+		return new ResponseEntity<>(userById, HttpStatus.OK);
 	}
 }

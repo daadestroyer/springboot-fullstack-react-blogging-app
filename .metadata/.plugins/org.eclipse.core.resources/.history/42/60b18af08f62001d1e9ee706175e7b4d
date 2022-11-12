@@ -1,0 +1,5 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.exception;
+
+public class GlobalExceptionHandler {
+
+}

@@ -85,6 +85,7 @@ public class PostServiceImpl implements PostService {
 				.orElseThrow(() -> new ResourceNotFoundException("Post", "Id", postId));
 
 		this.postRepo.delete(post);
+
 		return "Post " + postId + " is deleted....";
 	}
 

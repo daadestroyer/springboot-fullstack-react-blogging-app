@@ -81,10 +81,12 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public String deletePost(int postId) {
 		Post post = this.postRepo.findById(postId)
-
+		
 				.orElseThrow(() -> new ResourceNotFoundException("Post", "Id", postId));
-
-		this.postRepo.delete(post);
+		
+		this.postRepo.deleteById(postId);
+		 
+	
 		return "Post " + postId + " is deleted....";
 	}
 

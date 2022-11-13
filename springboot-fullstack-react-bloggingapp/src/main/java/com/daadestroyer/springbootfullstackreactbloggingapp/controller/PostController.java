@@ -74,6 +74,8 @@ public class PostController {
 		String message = this.postServiceImpl.deletePost(postId);
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
+	
+	// ERROR COMING IN DELETION
 
 	// update post
 	@PutMapping("/update-post/{postId}")

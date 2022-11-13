@@ -1,6 +1,7 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import com.daadestroyer.springbootfullstackreactbloggingapp.repo.CategoryRepo;
 import com.daadestroyer.springbootfullstackreactbloggingapp.repo.PostRepo;
 import com.daadestroyer.springbootfullstackreactbloggingapp.repo.UserRepo;
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.PostService;
+
+import net.bytebuddy.asm.Advice.This;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -51,8 +54,8 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public PostDto updatePost(PostDto postDto, int postId) {
-		//Post savedPost = this.postRepo.findById(postId)
-		//		.orElseThrow(() -> new ResourceNotFoundException("Post", "Id", postId));
+		// Post savedPost = this.postRepo.findById(postId)
+		// .orElseThrow(() -> new ResourceNotFoundException("Post", "Id", postId));
 
 		return null;
 	}
@@ -76,15 +79,25 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostDto> getPostByCategory(int catId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostDto> getPostByCategoryId(int catId) {
+		Category savedCategory = this.categoryRepo.findById(catId)
+				.orElseThrow(() -> new ResourceNotFoundException("Category", "Id", catId));
+
+		List<PostDto> postByCategory = this.postRepo.findByCategory(savedCategory).stream()
+				.map(post -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+
+		return postByCategory;
 	}
 
 	@Override
 	public List<PostDto> getPostByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		User savedUser = this.userRepo.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
+
+		List<PostDto> postByUser = this.postRepo.findByUser(savedUser).stream()
+				.map(post -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		
+		return postByUser;
 	}
 
 	@Override

@@ -22,12 +22,14 @@ public interface PostService {
 	public String deletePost(int postId);
 
 	// get post by category id
-	public List<PostDto> getPostByCategory(int catId);
+	public List<PostDto> getPostByCategoryId(int catId);
 
 	// get post by user id
 	public List<PostDto> getPostByUserId(int userId);
 
 	// search post
 	public List<PostDto> searchPost(String keyword);
+
+	 
 
 }

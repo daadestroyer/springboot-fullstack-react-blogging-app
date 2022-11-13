@@ -1,8 +1,11 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +31,22 @@ public class PostController {
 		PostDto savedPost = this.postServiceImpl.createPost(postDto, userId, categoryId);
 		return new ResponseEntity<>(savedPost, HttpStatus.OK);
 	}
-	
+
 	// update post
+
+	// get post by user
+	// http://localhost:8080/post/user/1/posts
+	@GetMapping("/user/{userId}/posts")
+	public ResponseEntity<?> getPostByUserId(@PathVariable int userId) {
+		List<PostDto> postByUserId = this.postServiceImpl.getPostByUserId(userId);
+		return new ResponseEntity<>(postByUserId, HttpStatus.OK);
+	}
+
+	// get post by category
+	// http://localhost:8080/post/category/1/posts
+	@GetMapping("/category/{categoryId}/posts")
+	public ResponseEntity<?> getPostByCategoryId(@PathVariable int categoryId) {
+		List<PostDto> postByCategoryId = this.postServiceImpl.getPostByCategoryId(categoryId);
+		return new ResponseEntity<>(postByCategoryId, HttpStatus.OK);
+	}
 }

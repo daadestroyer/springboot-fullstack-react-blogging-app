@@ -1,0 +1,8 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.service;
+
+public interface PostService {
+
+	// create
+
+	//
+}

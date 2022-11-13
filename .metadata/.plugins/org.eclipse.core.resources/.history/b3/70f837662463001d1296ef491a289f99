@@ -1,0 +1,74 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.service.impl;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.daadestroyer.springbootfullstackreactbloggingapp.dto.PostDto;
+import com.daadestroyer.springbootfullstackreactbloggingapp.exception.ResourceNotFoundException;
+import com.daadestroyer.springbootfullstackreactbloggingapp.model.Post;
+import com.daadestroyer.springbootfullstackreactbloggingapp.repo.PostRepo;
+import com.daadestroyer.springbootfullstackreactbloggingapp.service.PostService;
+
+@Service
+public class PostServiceImpl implements PostService {
+
+	@Autowired
+	private PostRepo postRepo;
+	@Autowired
+	private ModelMapper modelMapper;
+
+	@Override
+	public PostDto createPost(PostDto postDto) {
+		PostDto savedPost = this.postRepo.save(postDto);
+		return this.modelMapper.map(savedPost, PostDto.class);
+	}
+
+	@Override
+	public PostDto updatePost(PostDto postDto, int postId) {
+		Post savedPost = this.postRepo.findById(postId)
+				.orElseThrow(() -> new ResourceNotFoundException("Post", "Id", postId));
+		
+		
+		return null;
+	}
+
+	@Override
+	public PostDto getPost(int postId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PostDto> getAllPost() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deletePost(int postId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PostDto> getPostByCategory(int catId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PostDto> getPostByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PostDto> searchPost(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

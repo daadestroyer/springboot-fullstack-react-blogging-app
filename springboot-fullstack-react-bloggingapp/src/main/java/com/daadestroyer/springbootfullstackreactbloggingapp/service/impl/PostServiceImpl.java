@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.CategoryDto;
@@ -76,9 +77,24 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostResponse getAllPost(int pageNumber, int pageSize) {
-
-		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+	public PostResponse getAllPost(int pageNumber, int pageSize, String sortBy , String sortDir) {
+		
+		Sort sort = null;
+		
+		if(sortDir.equalsIgnoreCase("asc")) {
+			sort = Sort.by (sortBy).ascending();
+		}
+		else {
+			sort = Sort.by (sortBy).descending();
+		}
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+		
+		
+		
+		/* 
+		 	Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending();
+			we can fetch data on the basis of ascending or descending order
+		*/
 
 		Page<Post> pagePost = this.postRepo.findAll(pageable);
 

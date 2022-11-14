@@ -8,7 +8,7 @@ import com.daadestroyer.springbootfullstackreactbloggingapp.helper.PostResponse;
 public interface PostService {
 
 	// create
-	public PostDto createPost(PostDto postDto , int userId , int categoryId);
+	public PostDto createPost(PostDto postDto, int userId, int categoryId);
 
 	// update
 	public PostDto updatePost(PostDto postDto, int postId);
@@ -17,7 +17,7 @@ public interface PostService {
 	public PostDto getPost(int postId);
 
 	// get all post
-	public PostResponse getAllPost(int pageNumber , int pageSize);
+	public PostResponse getAllPost(int pageNumber, int pageSize, String sortBy , String sortDir);
 
 	// delete post
 	public String deletePost(int postId);
@@ -30,7 +30,5 @@ public interface PostService {
 
 	// search post
 	public List<PostDto> searchPost(String keyword);
-
-	 
 
 }

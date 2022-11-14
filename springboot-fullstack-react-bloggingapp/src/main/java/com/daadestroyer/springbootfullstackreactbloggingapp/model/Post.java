@@ -54,4 +54,12 @@ public class Post {
 	@ManyToOne
 	@JoinColumn(name = "catId")
 	private Category category;
+
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", postTitle=" + postTitle + ", postContent=" + postContent + ", imageName="
+				+ imageName + ", addedDate=" + addedDate + ", user=" + user + ", category=" + category + "]";
+	}
+	
+	
 }

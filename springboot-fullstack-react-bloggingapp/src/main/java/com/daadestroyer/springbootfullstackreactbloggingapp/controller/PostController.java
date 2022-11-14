@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.PostDto;
@@ -54,10 +55,14 @@ public class PostController {
 
 	// get all post
 	// http://localhost:8080/post/get-all-post
+	// http://localhost:8080/post/get-all-post?pageNumber=1&pageSize=2
 	@GetMapping("/get-all-post")
-	public ResponseEntity<?> getAllPost() {
-		List<PostDto> allPost = this.postServiceImpl.getAllPost();
+	public ResponseEntity<?> getAllPost(
+			@RequestParam(required = false, defaultValue = "0") int pageNumber,
+			@RequestParam(required = false, defaultValue = "3") int pageSize) {
+		List<PostDto> allPost = this.postServiceImpl.getAllPost(pageNumber, pageSize);
 		return new ResponseEntity<>(allPost, HttpStatus.OK);
+
 	}
 
 	// get post by id
@@ -74,7 +79,7 @@ public class PostController {
 		String message = this.postServiceImpl.deletePost(postId);
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
-	
+
 	// ERROR COMING IN DELETION
 
 	// update post

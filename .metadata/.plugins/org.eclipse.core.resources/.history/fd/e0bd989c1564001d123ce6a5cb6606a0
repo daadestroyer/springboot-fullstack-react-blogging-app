@@ -1,0 +1,5 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.helper;
+
+public class PostResponse {
+
+}

@@ -3,6 +3,7 @@ package com.daadestroyer.springbootfullstackreactbloggingapp.service;
 import java.util.List;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.PostDto;
+import com.daadestroyer.springbootfullstackreactbloggingapp.helper.PostResponse;
 
 public interface PostService {
 
@@ -16,7 +17,7 @@ public interface PostService {
 	public PostDto getPost(int postId);
 
 	// get all post
-	public List<PostDto> getAllPost(int pageNumber , int pageSize);
+	public PostResponse getAllPost(int pageNumber , int pageSize);
 
 	// delete post
 	public String deletePost(int postId);

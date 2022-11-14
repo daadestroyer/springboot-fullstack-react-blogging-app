@@ -1,0 +1,14 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.helper;
+
+import java.util.List;
+
+import com.daadestroyer.springbootfullstackreactbloggingapp.dto.PostDto;
+
+public class PostResponse {
+	
+	private List<PostDto> content;
+	private int pageNumber;
+	private int pageSize;
+	private int totalPages;
+	private boolean lastPage;
+}

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.PostDto;
+import com.daadestroyer.springbootfullstackreactbloggingapp.helper.PostResponse;
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.impl.PostServiceImpl;
 
 @RestController
@@ -57,10 +58,11 @@ public class PostController {
 	// http://localhost:8080/post/get-all-post
 	// http://localhost:8080/post/get-all-post?pageNumber=1&pageSize=2
 	@GetMapping("/get-all-post")
-	public ResponseEntity<?> getAllPost(
-			@RequestParam(required = false, defaultValue = "0") int pageNumber,
+	public ResponseEntity<?> getAllPost(@RequestParam(required = false, defaultValue = "0") int pageNumber,
 			@RequestParam(required = false, defaultValue = "3") int pageSize) {
-		List<PostDto> allPost = this.postServiceImpl.getAllPost(pageNumber, pageSize);
+		PostResponse allPost = this.postServiceImpl.getAllPost(pageNumber, pageSize);
+		
+		
 		return new ResponseEntity<>(allPost, HttpStatus.OK);
 
 	}

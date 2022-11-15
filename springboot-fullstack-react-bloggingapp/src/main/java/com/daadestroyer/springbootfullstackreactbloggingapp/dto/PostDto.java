@@ -16,7 +16,7 @@ public class PostDto {
 
 	private int postId;
 
-	@Column(name = "postTitle", nullable = false, length = 100)
+	@Column(name = "title", nullable = false, length = 100)
 	private String postTitle;
 
 	@Column(name = "postContent", nullable = false, length = 10000)

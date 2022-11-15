@@ -32,8 +32,8 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int postId;
 
-	@Column(name = "postTitle", nullable = false, length = 100)
-	private String postTitle;
+	@Column(name = "title", nullable = false, length = 100)
+	private String title;
 
 	@Column(name = "postContent", nullable = false, length = 10000)
 	private String postContent;
@@ -55,11 +55,7 @@ public class Post {
 	@JoinColumn(name = "catId")
 	private Category category;
 
-	@Override
-	public String toString() {
-		return "Post [postId=" + postId + ", postTitle=" + postTitle + ", postContent=" + postContent + ", imageName="
-				+ imageName + ", addedDate=" + addedDate + ", user=" + user + ", category=" + category + "]";
-	}
+ 
 	
 	
 }

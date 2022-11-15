@@ -64,7 +64,7 @@ public class PostController {
 			@RequestParam(required = false, defaultValue = "postId") String sortBy,
 			@RequestParam(required = false, defaultValue = "asc") String sortDir) {
 
-		PostResponse allPost = this.postServiceImpl.getAllPost(pageNumber, pageSize, sortBy , sortDir);
+		PostResponse allPost = this.postServiceImpl.getAllPost(pageNumber, pageSize, sortBy, sortDir);
 
 		return new ResponseEntity<>(allPost, HttpStatus.OK);
 
@@ -92,6 +92,14 @@ public class PostController {
 	public ResponseEntity<?> updatePost(@RequestBody PostDto postDto, @PathVariable int postId) {
 		PostDto updatePost = this.postServiceImpl.updatePost(postDto, postId);
 		return new ResponseEntity<>(updatePost, HttpStatus.OK);
+	}
+
+	// search post
+	// http://localhost:8080/post/search-post/bollywood
+	@GetMapping("/search-post/{keyword}")
+	public ResponseEntity<?> searchPost(@PathVariable String keyword) {
+		List<PostDto> searchPost = this.postServiceImpl.searchPost(keyword);
+		return new ResponseEntity<>(searchPost, HttpStatus.OK);
 	}
 
 }

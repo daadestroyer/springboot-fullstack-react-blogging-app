@@ -1,0 +1,10 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.constant;
+
+public class PostConstant {
+	
+	public final static int PAGE_NUMBER = 0;
+	public final static int PAGE_SIZE = 3;
+	public final static int SORT_BY = 0;
+	public final static int PAGE_NUMBER = 0;
+	
+}

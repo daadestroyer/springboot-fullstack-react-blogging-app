@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.daadestroyer.springbootfullstackreactbloggingapp.constant.PostConstant;
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.PostDto;
 import com.daadestroyer.springbootfullstackreactbloggingapp.helper.PostResponse;
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.impl.PostServiceImpl;
@@ -59,10 +60,10 @@ public class PostController {
 	// http://localhost:8080/post/get-all-post?pageNumber=1&pageSize=2
 	// http://localhost:8080/post/get-all-post?pageNumber=0&pageSize=2&sortBy=postContent&sortDir=desc
 	@GetMapping("/get-all-post")
-	public ResponseEntity<?> getAllPost(@RequestParam(required = false, defaultValue = "0") int pageNumber,
-			@RequestParam(required = false, defaultValue = "3") int pageSize,
-			@RequestParam(required = false, defaultValue = "postId") String sortBy,
-			@RequestParam(required = false, defaultValue = "asc") String sortDir) {
+	public ResponseEntity<?> getAllPost(@RequestParam(required = false, defaultValue = PostConstant.PAGE_NUMBER) int pageNumber,
+			@RequestParam(required = false, defaultValue = PostConstant.PAGE_SIZE) int pageSize,
+			@RequestParam(required = false, defaultValue = PostConstant.SORT_BY) String sortBy,
+			@RequestParam(required = false, defaultValue = PostConstant.SORT_DIR) String sortDir) {
 
 		PostResponse allPost = this.postServiceImpl.getAllPost(pageNumber, pageSize, sortBy, sortDir);
 

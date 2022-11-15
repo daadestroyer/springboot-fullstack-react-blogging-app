@@ -1,8 +1,10 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.constant.PostConstant;
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.PostDto;
 import com.daadestroyer.springbootfullstackreactbloggingapp.helper.PostResponse;
+import com.daadestroyer.springbootfullstackreactbloggingapp.service.ImageService;
+import com.daadestroyer.springbootfullstackreactbloggingapp.service.impl.ImageServiceImpl;
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.impl.PostServiceImpl;
 
 @RestController
@@ -26,6 +31,12 @@ public class PostController {
 
 	@Autowired
 	private PostServiceImpl postServiceImpl;
+
+	@Autowired
+	private ImageServiceImpl imageServiceImpl;
+
+	@Value("${project.image}")
+	private String path;
 
 	// create post
 	// http://localhost:8080/post/user/1/category/1/posts
@@ -60,7 +71,8 @@ public class PostController {
 	// http://localhost:8080/post/get-all-post?pageNumber=1&pageSize=2
 	// http://localhost:8080/post/get-all-post?pageNumber=0&pageSize=2&sortBy=postContent&sortDir=desc
 	@GetMapping("/get-all-post")
-	public ResponseEntity<?> getAllPost(@RequestParam(required = false, defaultValue = PostConstant.PAGE_NUMBER) int pageNumber,
+	public ResponseEntity<?> getAllPost(
+			@RequestParam(required = false, defaultValue = PostConstant.PAGE_NUMBER) int pageNumber,
 			@RequestParam(required = false, defaultValue = PostConstant.PAGE_SIZE) int pageSize,
 			@RequestParam(required = false, defaultValue = PostConstant.SORT_BY) String sortBy,
 			@RequestParam(required = false, defaultValue = PostConstant.SORT_DIR) String sortDir) {
@@ -101,6 +113,22 @@ public class PostController {
 	public ResponseEntity<?> searchPost(@PathVariable String keyword) {
 		List<PostDto> searchPost = this.postServiceImpl.searchPost(keyword);
 		return new ResponseEntity<>(searchPost, HttpStatus.OK);
+	}
+
+	// post image upload
+	// http://localhost:8080/post/upload-image/1
+	@PostMapping("/upload-image/{postId}")
+	public ResponseEntity<?> uploadPostImage(@RequestParam MultipartFile image, @PathVariable int postId)
+			throws IOException {
+		PostDto postDto = this.postServiceImpl.getPost(postId);
+		
+		String fileName = this.imageServiceImpl.uploadImage(path, image);
+
+		
+		postDto.setImageName(fileName);
+
+		PostDto updatePost = this.postServiceImpl.updatePost(postDto, postId);
+		return new ResponseEntity<>(updatePost, HttpStatus.OK);
 	}
 
 }

@@ -31,7 +31,7 @@ public class CommentController {
 	}
 
 	// http://localhost:8080/comment/delete-comment/3
-	// DELETION NOT WORKING...
+	// DELETION NOT WORKING
 	@DeleteMapping("/delete-comment/{commentId}")
 	public ResponseEntity<?> deleteComment(@PathVariable int commentId) {
 		String message = this.commentServiceImpl.deleteComment(commentId);

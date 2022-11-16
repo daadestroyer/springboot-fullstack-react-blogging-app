@@ -12,16 +12,24 @@ import lombok.ToString;
 public class ResourceNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String resourceName;
 	private String fieldName;
-	private long fieldValue;
+	private long fieldValue1;
+	private String fieldValue2;
 
-	public ResourceNotFoundException(String resourceName, String fieldName, long fieldValue) {
-		super(resourceName + " resource not found with " + fieldName + ":" + fieldValue);
+	public ResourceNotFoundException(String resourceName, String fieldName, long fieldValue1) {
+		super(resourceName + " resource not found with " + fieldName + ":" + fieldValue1);
 		this.resourceName = resourceName;
 		this.fieldName = fieldName;
-		this.fieldValue = fieldValue;
+		this.fieldValue1 = fieldValue1;
+	}
+
+	public ResourceNotFoundException(String resourceName, String fieldName, String fieldValue2) {
+		super(resourceName + " resource not found with " + fieldName + ":" + fieldValue2);
+		this.resourceName = resourceName;
+		this.fieldName = fieldName;
+		this.fieldValue2 = fieldValue2;
 	}
 
 }

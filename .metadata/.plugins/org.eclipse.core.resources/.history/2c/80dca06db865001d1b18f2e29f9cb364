@@ -1,0 +1,10 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.model;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Role {
+
+	private int id;
+	private String role;
+}

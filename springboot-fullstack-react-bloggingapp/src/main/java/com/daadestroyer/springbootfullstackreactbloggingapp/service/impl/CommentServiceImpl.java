@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
 				.orElseThrow(() -> new ResourceNotFoundException("Post", "Id", postId));
 
 		Comment comment = this.modelMapper.map(commentDto, Comment.class);
-
+		// this we are setting because , many comments belongs to one post
 		comment.setPost(post);
 
 		Comment savedComment = this.commentRepo.save(comment);

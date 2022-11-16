@@ -1,0 +1,7 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.dto;
+
+public class CommentDto {
+private int id;
+	
+	private String content;
+}

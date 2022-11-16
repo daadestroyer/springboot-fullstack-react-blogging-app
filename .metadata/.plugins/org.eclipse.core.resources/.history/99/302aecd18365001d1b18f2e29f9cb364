@@ -1,0 +1,29 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.service.impl;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.daadestroyer.springbootfullstackreactbloggingapp.dto.CommentDto;
+import com.daadestroyer.springbootfullstackreactbloggingapp.repo.CommentRepo;
+import com.daadestroyer.springbootfullstackreactbloggingapp.service.CommentService;
+
+public class CommentServiceImpl implements CommentService{
+
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
+	private CommentRepo commentRepo;
+	@Override
+	public CommentDto createComment(CommentDto commentDto, int postId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteComment(int commentId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

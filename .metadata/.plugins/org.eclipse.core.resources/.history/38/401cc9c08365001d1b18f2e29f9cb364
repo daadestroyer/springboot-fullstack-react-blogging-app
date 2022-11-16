@@ -1,0 +1,7 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.service.impl;
+
+import com.daadestroyer.springbootfullstackreactbloggingapp.service.CommentService;
+
+public class CommentServiceImpl implements CommentService{
+
+}

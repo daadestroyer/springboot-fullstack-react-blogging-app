@@ -3,6 +3,8 @@ package com.daadestroyer.springbootfullstackreactbloggingapp.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -41,7 +43,7 @@ public class PostController {
 	// create post
 	// http://localhost:8080/post/user/1/category/1/posts
 	@PostMapping("/user/{userId}/category/{categoryId}/posts")
-	public ResponseEntity<?> createPost(@RequestBody PostDto postDto, @PathVariable int userId,
+	public ResponseEntity<?> createPost(@Valid @RequestBody PostDto postDto, @PathVariable int userId,
 			@PathVariable int categoryId) {
 
 		PostDto savedPost = this.postServiceImpl.createPost(postDto, userId, categoryId);
@@ -102,7 +104,7 @@ public class PostController {
 
 	// update post
 	@PutMapping("/update-post/{postId}")
-	public ResponseEntity<?> updatePost(@RequestBody PostDto postDto, @PathVariable int postId) {
+	public ResponseEntity<?> updatePost(@Valid @RequestBody PostDto postDto, @PathVariable int postId) {
 		PostDto updatePost = this.postServiceImpl.updatePost(postDto, postId);
 		return new ResponseEntity<>(updatePost, HttpStatus.OK);
 	}

@@ -1,8 +1,13 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import javax.persistence.Column;
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.daadestroyer.springbootfullstackreactbloggingapp.model.Comment;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,5 +38,7 @@ public class PostDto {
 	private CategoryDto category;
 	
 	private UserDto user;
+	
+	private List<CommentDto> comments; 
 
 }

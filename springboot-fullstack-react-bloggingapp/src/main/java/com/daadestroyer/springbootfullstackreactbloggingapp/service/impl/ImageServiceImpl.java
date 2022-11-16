@@ -27,6 +27,7 @@ public class ImageServiceImpl implements ImageService {
 		String randomID = UUID.randomUUID().toString();
 		String fileName1 = randomID.concat(name.substring(name.lastIndexOf(".")));
 
+		
 		// full path
 		String filePath = path + File.separator + fileName1;
 

@@ -7,6 +7,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,10 +28,17 @@ public class UserController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	// POST - save user
 	// http://localhost:8080/user/save-user
 	@PostMapping("/save-user")
 	public ResponseEntity<?> saveUser(@Valid @RequestBody UserDto userDto) {
+		String password = userDto.getPassword();
+		String encodePassword = this.passwordEncoder.encode(password);
+		userDto.setPassword(encodePassword);
+		
 		UserDto newUser = this.userServiceImpl.addUser(userDto);
 		return new ResponseEntity<>(newUser, HttpStatus.OK);
 	}
@@ -43,6 +52,7 @@ public class UserController {
 	}
 
 	// DELETE - delete user
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/delete-user/{userId}")
 	// http://localhost:8080/user/delete-user/2
 	public ResponseEntity<?> deleteUser(@PathVariable int userId) {

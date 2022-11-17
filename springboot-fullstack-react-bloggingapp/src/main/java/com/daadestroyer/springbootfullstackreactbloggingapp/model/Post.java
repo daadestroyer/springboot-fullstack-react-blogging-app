@@ -51,7 +51,6 @@ public class Post {
 
 	// this Post entity belongs to one User at a time
 	@ManyToOne
-	@JoinColumn(name = "userId")
 	private User user;
 
 	// this Post entity belongs to one category at a time

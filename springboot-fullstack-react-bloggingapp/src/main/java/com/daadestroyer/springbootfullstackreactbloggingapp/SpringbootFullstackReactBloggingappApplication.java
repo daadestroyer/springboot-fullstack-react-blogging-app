@@ -27,7 +27,7 @@ public class SpringbootFullstackReactBloggingappApplication implements CommandLi
 
 	@Override
 	public void run(String... args) throws Exception {
-		//System.out.println(this.passwordEncoder.encode("pwd3"));
+		System.out.println(this.passwordEncoder.encode("pwd1"));
 		
 	}
 }

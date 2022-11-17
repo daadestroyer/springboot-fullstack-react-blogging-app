@@ -1,8 +1,12 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.dto;
 
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.daadestroyer.springbootfullstackreactbloggingapp.model.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,4 +37,6 @@ public class UserDto {
 	@NotEmpty(message = "please enter about")
 	@Size(min = 10, max = 100, message = "about can't be less than 10 or greater than 100")
 	private String about;
+	
+	 
 }

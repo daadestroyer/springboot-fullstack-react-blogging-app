@@ -27,7 +27,7 @@ public class CategoryController {
 	private CategoryServiceImpl categoryServiceImpl;
 
 	// create
-	// http://localhost:8080/user/save-category/
+	// http://localhost:8080/category/save-category/
 	@PostMapping("/save-category")
 	public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
 		CategoryDto savedCategoryDto = this.categoryServiceImpl.createCategory(categoryDto);

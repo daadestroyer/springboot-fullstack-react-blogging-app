@@ -3,6 +3,7 @@ package com.daadestroyer.springbootfullstackreactbloggingapp.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,14 +13,28 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.impl.CustomUserDetailService;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableWebMvc
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	// http://localhost:8080/v3/api-docs
+	// http://localhost:8080/swagger-ui/index.html
+	public static final String[]  PUBLIC_URLS = {
+			"/v3/api-docs",
+			"/v2/api-docs",
+			"/token/generate", 
+			"/swagger-resources/**", 
+			"/swagger-ui/**",
+			"/webjars/**"
+	};
+	
+	
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
 
@@ -38,7 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeHttpRequests()
-			.antMatchers("/token/generate").permitAll()
+			.antMatchers().permitAll()
+			.antMatchers(PUBLIC_URLS).permitAll() 
+			.antMatchers(HttpMethod.GET).permitAll()
 			.anyRequest()
 			.authenticated()
 			.and()

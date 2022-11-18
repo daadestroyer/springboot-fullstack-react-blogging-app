@@ -1,5 +1,6 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.dto;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
@@ -37,6 +38,12 @@ public class UserDto {
 	@NotEmpty(message = "please enter about")
 	@Size(min = 10, max = 100, message = "about can't be less than 10 or greater than 100")
 	private String about;
+	
+	private Set<RoleDto> roles = new HashSet<>();
+
+	
+	
+	
 	
 	 
 }

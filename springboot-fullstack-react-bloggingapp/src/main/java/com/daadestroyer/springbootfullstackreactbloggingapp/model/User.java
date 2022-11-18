@@ -1,6 +1,7 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.model;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,9 +50,9 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Post> posts;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER) // putting this eager and because collections are lazy to load
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId "))
-	private Set<Role> roles;
+	private Set<Role> roles = new HashSet<>();
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -60,7 +61,7 @@ public class User implements UserDetails {
 		return authorities;
 	}
 
-	@Override
+	@Override	
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return this.userEmail;

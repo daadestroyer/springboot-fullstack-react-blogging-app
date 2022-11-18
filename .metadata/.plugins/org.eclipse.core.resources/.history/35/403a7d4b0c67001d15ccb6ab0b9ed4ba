@@ -1,0 +1,9 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.dto;
+
+import javax.persistence.Id;
+
+public class RoleDto {
+	@Id
+	private int id;
+	private String role;
+}

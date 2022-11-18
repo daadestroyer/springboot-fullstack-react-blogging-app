@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.daadestroyer.springbootfullstackreactbloggingapp.constant.RoleConstant;
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.UserDto;
+import com.daadestroyer.springbootfullstackreactbloggingapp.model.Role;
+import com.daadestroyer.springbootfullstackreactbloggingapp.repo.RoleRepo;
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.impl.UserServiceImpl;
 
 @RestController
@@ -31,13 +34,14 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private RoleRepo roleRepo;
+	
 	// POST - save user
 	// http://localhost:8080/user/save-user
 	@PostMapping("/save-user")
 	public ResponseEntity<?> saveUser(@Valid @RequestBody UserDto userDto) {
-		String password = userDto.getPassword();
-		String encodePassword = this.passwordEncoder.encode(password);
-		userDto.setPassword(encodePassword);
+		
 		
 		UserDto newUser = this.userServiceImpl.addUser(userDto);
 		return new ResponseEntity<>(newUser, HttpStatus.OK);

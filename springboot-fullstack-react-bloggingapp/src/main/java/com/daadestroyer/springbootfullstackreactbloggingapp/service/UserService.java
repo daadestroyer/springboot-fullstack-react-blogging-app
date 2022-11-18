@@ -10,6 +10,8 @@ import com.daadestroyer.springbootfullstackreactbloggingapp.model.User;
 public interface UserService {
 
 	public UserDto addUser(UserDto userDto);
+	
+	//public UserDto registerNewUser(UserDto userDto);
 
 	public UserDto updateUser(UserDto userDto, int userId);
 

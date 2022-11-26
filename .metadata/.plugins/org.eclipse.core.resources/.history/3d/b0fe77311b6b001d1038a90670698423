@@ -1,0 +1,7 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.config;
+
+import javax.servlet.Filter;
+
+public class CORSFilter implements Filter {
+
+}

@@ -1,5 +1,10 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.controller;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
+
+import javax.validation.Valid;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +14,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.JwtAuthRequest;
 import com.daadestroyer.springbootfullstackreactbloggingapp.dto.JwtAuthResponse;
+import com.daadestroyer.springbootfullstackreactbloggingapp.dto.UserDto;
+import com.daadestroyer.springbootfullstackreactbloggingapp.exception.ApiException;
+import com.daadestroyer.springbootfullstackreactbloggingapp.exception.ResourceNotFoundException;
+import com.daadestroyer.springbootfullstackreactbloggingapp.model.User;
 import com.daadestroyer.springbootfullstackreactbloggingapp.service.impl.CustomUserDetailService;
 import com.daadestroyer.springbootfullstackreactbloggingapp.util.JwtUtil;
 
@@ -31,12 +41,16 @@ public class JwtController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
 
+	// http://localhost:8080/token/generate
 	@PostMapping("/generate")
-	public ResponseEntity<?> createToken(@RequestBody JwtAuthRequest jwtAuthRequest) throws Exception {
+	public ResponseEntity<?> createToken(@Valid @RequestBody JwtAuthRequest jwtAuthRequest) throws Exception {
 		// this line will validate the username and password if authentication is
 		// success then we can generate token
 		System.out.println("JWT Authrequest = " + jwtAuthRequest);
@@ -46,8 +60,13 @@ public class JwtController {
 		// if there is no exception just generate the token
 
 		String generateToken = this.jwtUtil.generateToken(jwtAuthRequest.getUsername());
-
-		return ResponseEntity.ok(new JwtAuthResponse(generateToken));
+		
+		UserDetails userDetails = this.customUserDetailService.loadUserByUsername(jwtAuthRequest.getUsername());
+		JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
+		jwtAuthResponse.setToken(generateToken);
+		jwtAuthResponse.setUserDto(this.modelMapper.map((User)userDetails,UserDto.class));
+		
+		return new ResponseEntity<>(jwtAuthResponse,HttpStatus.OK);
 	}
 
 	private void authenticate(String username, String password) throws Exception {
@@ -57,7 +76,7 @@ public class JwtController {
 			this.authenticationManager.authenticate(authenticationToken);
 		} catch (BadCredentialsException e) {
 			System.out.println("Invalid Details");
-			throw new Exception("invalid username/password!!!");
+			throw new ApiException("Invalid username or password !!");
 			// TODO: handle exception
 		}
 

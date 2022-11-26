@@ -1,0 +1,16 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.config;
+
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.classmate.Filter;
+
+@Component
+public class CORSConfig implements Filter{
+
+	@Override
+	public boolean include(Object element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

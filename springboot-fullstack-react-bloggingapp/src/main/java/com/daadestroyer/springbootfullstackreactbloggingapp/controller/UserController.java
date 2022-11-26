@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,19 +32,12 @@ public class UserController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-	
-	@Autowired
-	private RoleRepo roleRepo;
-	
-	// POST - save user
-	// http://localhost:8080/user/save-user
-	@PostMapping("/save-user")
-	public ResponseEntity<?> saveUser(@Valid @RequestBody UserDto userDto) {
-		
-		
-		UserDto newUser = this.userServiceImpl.addUser(userDto);
+	// POST - register user
+	// http://localhost:8080/user/register-user
+	@PostMapping("/register-user")
+	public ResponseEntity<?> registerUser(@Valid @RequestBody UserDto userDto) {
+
+		UserDto newUser = this.userServiceImpl.registerUser(userDto);
 		return new ResponseEntity<>(newUser, HttpStatus.OK);
 	}
 

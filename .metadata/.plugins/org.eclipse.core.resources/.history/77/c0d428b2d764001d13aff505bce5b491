@@ -1,7 +1,0 @@
-package com.daadestroyer.springbootfullstackreactbloggingapp.constant;
-
-public class PostConstant {
-	
-	public final static int PAGE_NUMBER = 0;
-	
-}

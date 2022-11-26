@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	private RoleRepo roleRepo;
 
 	@Override
-	public UserDto addUser(UserDto userDto) {
+	public UserDto registerUser(UserDto userDto) {
 		User user = this.modelMapper.map(userDto, User.class);
 
 		// encode the password

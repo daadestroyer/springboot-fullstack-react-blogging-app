@@ -1,7 +1,0 @@
-package com.daadestroyer.springbootfullstackreactbloggingapp.config;
-
-import org.springframework.security.web.AuthenticationEntryPoint;
-
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint{
-
-}

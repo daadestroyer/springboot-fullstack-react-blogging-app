@@ -1,5 +1,6 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -26,6 +27,7 @@ public class SpringbootFullstackReactBloggingappApplication implements CommandLi
 	private RoleRepo roleRepo;
 	
 	public static void main(String[] args) {
+	 
 		SpringApplication.run(SpringbootFullstackReactBloggingappApplication.class, args);
 	}
 

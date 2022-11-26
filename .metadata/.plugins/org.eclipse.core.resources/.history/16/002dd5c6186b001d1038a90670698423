@@ -1,0 +1,5 @@
+package com.daadestroyer.springbootfullstackreactbloggingapp.config;
+
+public class CORSConfig {
+
+}

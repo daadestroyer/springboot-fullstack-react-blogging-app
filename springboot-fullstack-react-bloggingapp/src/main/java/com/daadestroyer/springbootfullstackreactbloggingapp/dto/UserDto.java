@@ -3,11 +3,13 @@ package com.daadestroyer.springbootfullstackreactbloggingapp.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.model.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +31,8 @@ public class UserDto {
 	private String userName;
 
 	@Email(message = "please enter correct email")
+	@NotEmpty(message = "please enter email")
+	@Column(unique = true)
 	private String userEmail;
 
 	@NotEmpty(message = "please enter password")
@@ -36,9 +40,13 @@ public class UserDto {
 	private String password;
 
 	@NotEmpty(message = "please enter about")
-	@Size(min = 10, max = 100, message = "about can't be less than 10 or greater than 100")
+	@Size(min = 10, message = "about can't be less than 10")
 	private String about;
 	
+	@JsonIgnore
+	public String getPassword() {
+		return this.password;
+	}
 	private Set<RoleDto> roles = new HashSet<>();
 
 	

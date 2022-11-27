@@ -19,7 +19,7 @@ pom.xml -> <a href="https://github.com/daadestroyer/springboot-fullstack-react-b
 <br><br>
 
 #### Backend Functionalities
-#### ==================
+
 -> creating realtime REST APIs <br>
 -> Using GlobalExceptionHandler concept to make my life easy inorder to handle exceptions <br>
 -> Validating data using JSR 380 known as Bean Validation , hibernate validator is a implementation of validation api<br>
@@ -35,5 +35,5 @@ pom.xml -> <a href="https://github.com/daadestroyer/springboot-fullstack-react-b
 -> How to add profiles for  different environments <br>
 -> How to deploy Spring boot in productions <br>
 
-#### Frontend Functionalities
-#### ==================
+ 
+ 

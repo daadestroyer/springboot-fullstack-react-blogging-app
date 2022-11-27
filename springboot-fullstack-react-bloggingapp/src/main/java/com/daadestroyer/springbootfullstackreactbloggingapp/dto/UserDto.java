@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.model.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,6 +48,12 @@ public class UserDto {
 	public String getPassword() {
 		return this.password;
 	}
+	
+	@JsonProperty
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	private Set<RoleDto> roles = new HashSet<>();
 
 	

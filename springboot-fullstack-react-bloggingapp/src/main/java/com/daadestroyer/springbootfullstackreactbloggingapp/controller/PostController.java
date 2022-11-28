@@ -1,6 +1,7 @@
 package com.daadestroyer.springbootfullstackreactbloggingapp.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -78,7 +79,8 @@ public class PostController {
 			@RequestParam(required = false, defaultValue = PostConstant.PAGE_NUMBER) int pageNumber,
 			@RequestParam(required = false, defaultValue = PostConstant.PAGE_SIZE) int pageSize,
 			@RequestParam(required = false, defaultValue = PostConstant.SORT_BY) String sortBy,
-			@RequestParam(required = false, defaultValue = PostConstant.SORT_DIR) String sortDir) {
+			@RequestParam(required = false, defaultValue = PostConstant.SORT_DIR) String sortDir
+			,Principal principal) {
 
 		PostResponse allPost = this.postServiceImpl.getAllPost(pageNumber, pageSize, sortBy, sortDir);
 

@@ -103,7 +103,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public FilterRegistrationBean coresFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.addAllowedOriginPattern("*");
@@ -121,8 +120,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
 
-       
-
+        bean.setOrder(-110);
         return bean;
     }
 	

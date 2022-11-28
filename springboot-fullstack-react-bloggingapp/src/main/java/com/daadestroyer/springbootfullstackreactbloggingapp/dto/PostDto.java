@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.daadestroyer.springbootfullstackreactbloggingapp.model.Comment;
@@ -21,10 +23,12 @@ public class PostDto {
 
 	private int postId;
 
-	@Column(name = "title", nullable = false, length = 100)
+	@Column(name = "title")
+	@NotEmpty(message = "please enter post title")
 	private String postTitle;
 
-	@Column(name = "postContent", nullable = false, length = 10000)
+	@Column(name = "postContent")
+	@NotEmpty(message = "please enter post content")
 	private String postContent;
 
 	@Column(name = "imageName", columnDefinition = "varchar(255) default 'default.png'")
